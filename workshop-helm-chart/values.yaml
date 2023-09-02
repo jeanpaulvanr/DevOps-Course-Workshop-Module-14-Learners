@@ -1,2 +1,8 @@
 replicas: 1
 serviceName: module-14-helm
+imageName: jearysmfourteenregistryname.azurecr.io/our-image-name:v1
+#registryName: jearysmfourteenregistryname
+databaseName: cohort26-jea-rys-order-processing-db
+databaseUser: dbadmin
+databaseServerName: cohort26-jea-rys-order-processing-sqlserver.database.windows.net
+financePackageUrl: https://cohort26-jea-rys-finance-package-app.azurewebsites.net

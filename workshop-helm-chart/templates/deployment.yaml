@@ -16,7 +16,30 @@ spec:
         app: {{ .Values.serviceName }}
     spec:
       containers:
-        - name: container-name
-          image: nginx
+        - name: orderprocess
+          image: {{ .Values.imageName }}
           ports:
           - containerPort: 80
+          env:
+          - name: DATABASE_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: order-processing-app
+                key: databasePassword
+          - name: DATABASE_NAME
+            value: {{ .Values.databaseName }}
+          - name: DATABASE_USER
+            value: {{ .Values.databaseUser }}
+          - name: DB_SERVER_NAME
+            value: {{ .Values.databaseServerName }}
+          - name: FINANCE_PACKAGE_URL
+            value: {{ .Values.financePackageUrl }}
+          resources:
+            requests:
+              memory: "0.5Gi"
+              cpu: "500m"
+            limits:
+              memory: "0.5Gi"
+              cpu: "500m"
+      imagePullSecrets:
+      - name: acr-secret
